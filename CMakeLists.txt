@@ -73,18 +73,14 @@ set(BPG_SOURCES
         libbpg/libavcodec/videodsp.c
         )
 
-
-add_definitions("-Os -Wall -MMD -fno-asynchronous-unwind-tables -fdata-sections -ffunction-sections -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -fomit-frame-pointer")
-file (STRINGS "libbpg/VERSION" VERSION)
-add_definitions(-DCONFIG_BPG_VERSION=\"${VERSION}\")
-add_definitions(-D_FILE_OFFSET_BITS=64)
-add_definitions(-D_LARGEFILE_SOURCE)
-add_definitions(-D_REENTRANT)
-add_definitions(-DHAVE_AV_CONFIG_H)
-
 add_library(bpg STATIC ${BPG_SOURCES})
-
-
+file (STRINGS "libbpg/VERSION" VERSION)
+target_compile_definitions(bpg PUBLIC -DCONFIG_BPG_VERSION=\"${VERSION}\")
+target_compile_definitions(bpg PUBLIC -D_FILE_OFFSET_BITS=64)
+target_compile_definitions(bpg PUBLIC -D_LARGEFILE_SOURCE)
+target_compile_definitions(bpg PUBLIC -D_REENTRANT)
+target_compile_definitions(bpg PUBLIC -DHAVE_AV_CONFIG_H)
+add_definitions("-Os -Wall -MMD -fno-asynchronous-unwind-tables -fdata-sections -ffunction-sections -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -fomit-frame-pointer")
 target_include_directories(bpg
         PRIVATE
         libbpg
