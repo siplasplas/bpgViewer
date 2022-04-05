@@ -80,7 +80,6 @@ add_definitions(-DCONFIG_BPG_VERSION=\"${VERSION}\")
 add_definitions(-D_FILE_OFFSET_BITS=64)
 add_definitions(-D_LARGEFILE_SOURCE)
 add_definitions(-D_REENTRANT)
-add_definitions(-DCONFIG_SMALL)
 add_definitions(-DHAVE_AV_CONFIG_H)
 
 add_library(bpg STATIC ${BPG_SOURCES})
